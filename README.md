@@ -89,6 +89,9 @@ bibtex-tidy references.bib
       Examples:
       --omit=id,name
       
+  --wikiConfig, --no-wikiConfig
+      wikiConfig
+      
   --curly, --no-curly
       Enclose all property values in braces. Quoted values will be converted to
       braces. For example, "Journal of Tea" will become {Journal of Tea}.

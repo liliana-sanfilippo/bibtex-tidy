@@ -30,6 +30,7 @@ export type OptionsNormalized = Omit<
 	| "removeBraces"
 	| "generateKeys"
 	| "blankLines"
+    | "wikiConfig"
 > & {
 	align: number;
 	sort?: string[];
@@ -42,6 +43,7 @@ export type OptionsNormalized = Omit<
 	removeBraces?: string[];
 	generateKeys?: string;
 	blankLines: boolean;
+    wikiConfig?: boolean;
 };
 
 export function normalizeOptions(options: Options): OptionsNormalized {

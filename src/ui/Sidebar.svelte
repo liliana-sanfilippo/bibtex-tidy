@@ -10,6 +10,7 @@ import IndentOptions from "./IndentOptions.svelte";
 import SortingOptions from "./SortingOptions.svelte";
 import ValueOptions from "./ValueOptions.svelte";
 import WhitespaceOptions from "./WhitespaceOptions.svelte";
+import Option from "./Option.svelte";
 
 export let status:
 	| { status: "success"; result: BibTeXTidyResult }
@@ -18,6 +19,7 @@ export let status:
 export let running: boolean;
 export let options: OptionsNormalized;
 
+let wikiConfig = options.wikiConfig ?? true;
 let dispatch = createEventDispatcher<{ tidy: undefined }>();
 </script>
 
@@ -41,14 +43,7 @@ let dispatch = createEventDispatcher<{ tidy: undefined }>();
 				</a>
 			</p>
 		</header>
-
-		<IndentOptions bind:options />
-		<WhitespaceOptions bind:options />
-		<ValueOptions bind:options />
-		<SortingOptions bind:options />
-		<DuplicateOptions bind:options />
-		<CleanupOptions bind:options />
-		<Cli {options} />
+        <Option option="wikiConfig" bind:checked={wikiConfig} />
 	</form>
 
 	<div class="run">

@@ -37,6 +37,12 @@ export type BibTeXTidyOptions = {
 	 */
 	omit?: string[];
 	/**
+	 * wikiConfig
+	 *
+	 * wikiConfig
+	 */
+	wikiConfig?: boolean;
+	/**
 	 * Enclose values in braces
 	 *
 	 * Enclose all property values in braces. Quoted values will be converted to braces. For example, "Journal of Tea" will become {Journal of Tea}.

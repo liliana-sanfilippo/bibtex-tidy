@@ -59,6 +59,21 @@ export function generateTransformPipeline(
 	if (options.months) {
 		pipeline.push(createAbbreviateMonthsTransform());
 	}
+    if (options.wikiConfig) {
+        /**
+         * Remove duplicate fields.
+         */
+        pipeline.push(createRemoveDuplicateFieldsTransform());
+        /**
+         * Remove empty fields.
+         */
+        pipeline.push(createRemoveEmptyFieldsTransform());
+        /**
+         *
+         */
+        pipeline.push(createPreferCurlyTransform());
+     //  pipeline.push(createEncloseBracesTransform(["month"]));
+    }
 	if (options.dropAllCaps) {
 		pipeline.push(createDropAllCapsTransform());
 	}

@@ -332,7 +332,7 @@ __name(logAST, "logAST");
 
 // src/optionDefinitions.ts
 var DEFAULT_MERGE_CHECK = ["doi", "citation", "abstract"];
-var DEFAULT_ALIGN = 14;
+var DEFAULT_ALIGN = 0;
 var DEFAULT_SPACE = 2;
 var DEFAULT_WRAP = 80;
 var DEFAULT_FIELD_SORT = [
@@ -400,7 +400,7 @@ var optionDefinitions = [
       "Overwrite the original input files with the tidied result. This is enabled by default but will be disabled by default in v2. For v1, use --no-modify to output to stdout instead of overwriting the input files."
     ],
     type: "boolean",
-    defaultValue: true
+    defaultValue: false
     // TODO: In v2, switch this to false
   },
   {
@@ -420,6 +420,17 @@ var optionDefinitions = [
     examples: ["--omit=id,name"],
     type: "string[]",
     defaultValue: []
+  },
+  {
+    key: "wikiConfig",
+    cli: { "--wikiConfig": true, "--no-wikiConfig": false },
+    toCLI: /* @__PURE__ */ __name((val) => val ? "--curly" : void 0, "toCLI"),
+    title: "wikiConfig",
+    description: [
+      "wikiConfig"
+    ],
+    type: "boolean",
+    defaultValue: true
   },
   {
     key: "curly",
@@ -635,7 +646,7 @@ var optionDefinitions = [
       "Escape special characters, such as umlaut. This ensures correct typesetting with latex. Enabled by default."
     ],
     type: "boolean",
-    defaultValue: true
+    defaultValue: false
   },
   {
     key: "sortFields",
@@ -704,7 +715,7 @@ var optionDefinitions = [
     title: "Tidy comments",
     description: ["Remove whitespace surrounding comments."],
     type: "boolean",
-    defaultValue: true
+    defaultValue: false
   },
   {
     key: "removeEmptyFields",
@@ -727,7 +738,7 @@ var optionDefinitions = [
       "Only allow one of each field in each entry. Enabled by default."
     ],
     type: "boolean",
-    defaultValue: true
+    defaultValue: false
   },
   {
     key: "generateKeys",
@@ -767,7 +778,7 @@ var optionDefinitions = [
     title: "Lowercase fields",
     description: ["Lowercase field names and entry type. Enabled by default."],
     type: "boolean",
-    defaultValue: true
+    defaultValue: false
   },
   {
     key: "enclosingBraces",
@@ -848,7 +859,7 @@ var optionDefinitions = [
       "Make a backup <filename>.original. Enabled by default (unless --modify is explicitly provided or outputting to a different file/stdio). Deprecated but provided for backward compatibility."
     ],
     type: "boolean",
-    defaultValue: true,
+    defaultValue: false,
     deprecated: true
   }
 ];
@@ -4586,9 +4597,6 @@ function createPreferCurlyTransform() {
     name: "prefer-curly",
     apply: /* @__PURE__ */ __name((ast) => {
       for (const field of ast.fields()) {
-        if (field.name.toLowerCase() === "month" && monthAliases[ast.lookupRenderedEntryValue(field)]) {
-          continue;
-        }
         for (const child of field.value.concat) {
           child.type = "braced";
         }
@@ -4960,6 +4968,11 @@ function generateTransformPipeline(options) {
   const pipeline = [];
   if (options.months) {
     pipeline.push(createAbbreviateMonthsTransform());
+  }
+  if (options.wikiConfig) {
+    pipeline.push(createRemoveDuplicateFieldsTransform());
+    pipeline.push(createRemoveEmptyFieldsTransform());
+    pipeline.push(createPreferCurlyTransform());
   }
   if (options.dropAllCaps) {
     pipeline.push(createDropAllCapsTransform());

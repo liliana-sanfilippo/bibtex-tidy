@@ -17,3 +17,4 @@ test/.tmp*
 .DS_store
 Notes
 lcov.info
+.idea

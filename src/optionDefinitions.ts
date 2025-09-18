@@ -19,7 +19,7 @@ export type OptionDefinition = {
 };
 
 const DEFAULT_MERGE_CHECK: string[] = ["doi", "citation", "abstract"];
-export const DEFAULT_ALIGN = 14;
+export const DEFAULT_ALIGN = 0;
 export const DEFAULT_SPACE = 2;
 export const DEFAULT_WRAP = 80;
 export const DEFAULT_FIELD_SORT = [
@@ -89,7 +89,7 @@ export const optionDefinitions: OptionDefinition[] = [
 			"Overwrite the original input files with the tidied result. This is enabled by default but will be disabled by default in v2. For v1, use --no-modify to output to stdout instead of overwriting the input files.",
 		],
 		type: "boolean",
-		defaultValue: true, // TODO: In v2, switch this to false
+		defaultValue: false, // TODO: In v2, switch this to false
 	},
 	{
 		key: "omit",
@@ -112,6 +112,16 @@ export const optionDefinitions: OptionDefinition[] = [
 		type: "string[]",
 		defaultValue: [],
 	},
+    {
+        key: "wikiConfig",
+        cli: { "--wikiConfig": true, "--no-wikiConfig": false },
+        toCLI: (val) => (val ? "--curly" : undefined),
+        title: "wikiConfig",
+        description: [
+         'wikiConfig'  ],
+        type: "boolean",
+        defaultValue: true,
+    },
 	{
 		key: "curly",
 		cli: { "--curly": true, "--no-curly": false },
@@ -339,7 +349,7 @@ export const optionDefinitions: OptionDefinition[] = [
 			"Escape special characters, such as umlaut. This ensures correct typesetting with latex. Enabled by default.",
 		],
 		type: "boolean",
-		defaultValue: true,
+		defaultValue: false,
 	},
 	{
 		key: "sortFields",
@@ -408,7 +418,7 @@ export const optionDefinitions: OptionDefinition[] = [
 		title: "Tidy comments",
 		description: ["Remove whitespace surrounding comments."],
 		type: "boolean",
-		defaultValue: true,
+		defaultValue: false,
 	},
 	{
 		key: "removeEmptyFields",
@@ -431,7 +441,7 @@ export const optionDefinitions: OptionDefinition[] = [
 			"Only allow one of each field in each entry. Enabled by default.",
 		],
 		type: "boolean",
-		defaultValue: true,
+		defaultValue: false,
 	},
 
 	{
@@ -472,7 +482,7 @@ export const optionDefinitions: OptionDefinition[] = [
 		title: "Lowercase fields",
 		description: ["Lowercase field names and entry type. Enabled by default."],
 		type: "boolean",
-		defaultValue: true,
+		defaultValue: false,
 	},
 	{
 		key: "enclosingBraces",
@@ -553,7 +563,7 @@ export const optionDefinitions: OptionDefinition[] = [
 			"Make a backup <filename>.original. Enabled by default (unless --modify is explicitly provided or outputting to a different file/stdio). Deprecated but provided for backward compatibility.",
 		],
 		type: "boolean",
-		defaultValue: true,
+		defaultValue: false,
 		deprecated: true,
 	},
 ];
