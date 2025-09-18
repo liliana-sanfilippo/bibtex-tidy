@@ -2,14 +2,7 @@
 import { createEventDispatcher } from "svelte";
 import type { BibTeXTidyResult } from "../index.ts";
 import type { OptionsNormalized } from "../optionUtils.ts";
-import CleanupOptions from "./CleanupOptions.svelte";
-import Cli from "./Cli.svelte";
-import DuplicateOptions from "./DuplicateOptions.svelte";
 import Feedback from "./Feedback.svelte";
-import IndentOptions from "./IndentOptions.svelte";
-import SortingOptions from "./SortingOptions.svelte";
-import ValueOptions from "./ValueOptions.svelte";
-import WhitespaceOptions from "./WhitespaceOptions.svelte";
 import Option from "./Option.svelte";
 
 export let status:
@@ -28,22 +21,9 @@ let dispatch = createEventDispatcher<{ tidy: undefined }>();
 		<header class="intro">
 			<h1>BibTeX Tidy</h1>
 			<p>
-				This tool tidies bibtex files by fixing inconsistent whitespace,
-				removing duplicates, removing unwanted fields, and sorting entries.
-			</p>
-			<p>
-				<a class="btn" href="https://github.com/FlamingTempura/bibtex-tidy">
-					Github
-				</a>
-				<a
-					class="btn"
-					href="https://github.com/FlamingTempura/bibtex-tidy/issues"
-				>
-					Report a bug
-				</a>
+				This tool tidies bibtex files for the specific use for the Bibtex Reference Generator.
 			</p>
 		</header>
-        <Option option="wikiConfig" bind:checked={wikiConfig} />
 	</form>
 
 	<div class="run">

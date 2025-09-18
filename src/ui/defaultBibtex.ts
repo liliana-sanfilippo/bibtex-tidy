@@ -4,6 +4,7 @@ export const DEFAULT_BIBTEX = `Click Tidy to clean up the entries below
   title =	 { The impossible book },
   publisher =	 { Dead Poet Society},
   year =	 1942,
+  abstract = {Abstract},
   month =        mar
 }
 @article{steward03,

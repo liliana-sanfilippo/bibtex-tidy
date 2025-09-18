@@ -73,6 +73,7 @@ export function generateTransformPipeline(
          */
         pipeline.push(createPreferCurlyTransform());
      //  pipeline.push(createEncloseBracesTransform(["month"]));
+        pipeline.push(createRemoveSpecifiedFieldsTransform(["abstract"]))
     }
 	if (options.dropAllCaps) {
 		pipeline.push(createDropAllCapsTransform());

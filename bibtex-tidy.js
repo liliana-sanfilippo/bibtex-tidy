@@ -4973,6 +4973,7 @@ function generateTransformPipeline(options) {
     pipeline.push(createRemoveDuplicateFieldsTransform());
     pipeline.push(createRemoveEmptyFieldsTransform());
     pipeline.push(createPreferCurlyTransform());
+    pipeline.push(createRemoveSpecifiedFieldsTransform(["abstract"]));
   }
   if (options.dropAllCaps) {
     pipeline.push(createDropAllCapsTransform());
