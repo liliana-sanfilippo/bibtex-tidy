@@ -27,6 +27,7 @@ import { createSortEntriesTransform } from "./transforms/sortEntries.ts";
 import { createSortFieldsTransform } from "./transforms/sortFields.ts";
 import { createWrapValuesTransform } from "./transforms/wrapValues.ts";
 import type { Transform } from "./types.ts";
+import {removeNumberPrefixFromKey} from "./transforms/removeNumberPrefixFromKey.ts";
 
 function sortPipeline(Transforms: Transform[]): Transform[] {
 	const sorted: Transform[] = [];
@@ -74,6 +75,8 @@ export function generateTransformPipeline(
         pipeline.push(createPreferCurlyTransform());
      //  pipeline.push(createEncloseBracesTransform(["month"]));
         pipeline.push(createRemoveSpecifiedFieldsTransform(["abstract"]))
+
+        pipeline.push(removeNumberPrefixFromKey("[auth:required:lower][year:required][veryshorttitle:lower][duplicateNumber]"))
     }
 	if (options.dropAllCaps) {
 		pipeline.push(createDropAllCapsTransform());

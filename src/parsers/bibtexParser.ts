@@ -312,11 +312,7 @@ export function parseBibTeX(input: string): RootNode {
 						// Ensure subsequent characters are not appended to the key
 						node.keyEnded = true;
 					}
-				} else if (node.key && isNumberPrefix(node.key.charAt(0))) {
-                    while (isNumberPrefix(node.key.charAt(0))) {
-                        node.key = node.key.substring(1);
-                    }
-                } else if (char === ",") {
+				} else if (char === ",") {
 					node = new FieldNode(node);
 				}  else if (
 					(node.wrapType === "{" && char === "}") ||
@@ -506,7 +502,4 @@ export class BibTeXSyntaxError extends Error {
 	}
 }
 
-function isNumberPrefix(prefix: string): prefix is `${number}` {
-    return /^[0-9]+$/.test(prefix);
-}
 
