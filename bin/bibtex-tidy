@@ -929,7 +929,7 @@ var optionDefinitions = [
       true: DEFAULT_KEY_TEMPLATE,
       false: void 0
     },
-    defaultValue: void 0
+    defaultValue: true
   },
   {
     key: "maxAuthors",
@@ -4445,6 +4445,7 @@ function createGenerateKeysTransform(template) {
           entry.key = newKey;
         }
       }
+      console.log("createGenerateKeysTransform");
       return void 0;
     }
   };
@@ -4689,25 +4690,6 @@ function createPreferCurlyTransform() {
       for (const field of ast.fields()) {
         for (const child of field.value.concat) {
           child.type = "braced";
-        }
-        ast.invalidateField(field);
-      }
-      return void 0;
-    }
-  };
-}
-
-// src/transforms/preferNumeric.ts
-function createPreferNumericTransform() {
-  return {
-    name: "prefer-numeric",
-    apply: (ast) => {
-      for (const field of ast.fields()) {
-        for (const child of field.value.concat) {
-          const isNumeric = child.value.match(/^[1-9][0-9]*$/);
-          if (isNumeric) {
-            child.type = "literal";
-          }
         }
         ast.invalidateField(field);
       }
@@ -5047,8 +5029,9 @@ function sortPipeline(Transforms) {
   return sorted;
 }
 function generateTransformPipeline(options) {
-  var _a;
+  var _a, _b;
   const pipeline = [];
+  console.log("generateTransformPipeline");
   if (options.months) {
     pipeline.push(createAbbreviateMonthsTransform());
   }
@@ -5062,9 +5045,7 @@ function generateTransformPipeline(options) {
     pipeline.push(createEscapeCharactersTransform());
   }
   pipeline.push(createFormatPageRangeTransform());
-  if (options.generateKeys) {
-    pipeline.push(createGenerateKeysTransform(options.generateKeys));
-  }
+  pipeline.push(createGenerateKeysTransform((_a = options.generateKeys) != null ? _a : "[auth:required:lower][year:required][veryshorttitle:lower][duplicateNumber]"));
   if (options.maxAuthors) {
     pipeline.push(createLimitAuthorsTransform(options.maxAuthors));
   }
@@ -5087,9 +5068,6 @@ function generateTransformPipeline(options) {
   }
   if (options.curly) {
     pipeline.push(createPreferCurlyTransform());
-  }
-  if (options.numeric) {
-    pipeline.push(createPreferNumericTransform());
   }
   if (options.removeBraces) {
     pipeline.push(createRemoveBracesTransform(options.removeBraces));
@@ -5119,7 +5097,7 @@ function generateTransformPipeline(options) {
     pipeline.push(createBlankLinesTransform());
   }
   pipeline.push(createAlignValuesTransform(options.align));
-  pipeline.push(createFieldCommasTransform((_a = options.trailingCommas) != null ? _a : false));
+  pipeline.push(createFieldCommasTransform((_b = options.trailingCommas) != null ? _b : false));
   pipeline.push(createWrapValuesTransform(indent, options.align, options.wrap));
   return sortPipeline(pipeline);
 }
