@@ -60,92 +60,28 @@ export function generateTransformPipeline(
 	if (options.months) {
 		pipeline.push(createAbbreviateMonthsTransform());
 	}
-    if (options.wikiConfig) {
-        /**
-         * Remove duplicate fields.
-         */
-        pipeline.push(createRemoveDuplicateFieldsTransform());
-        /**
-         * Remove empty fields.
-         */
-        pipeline.push(createRemoveEmptyFieldsTransform());
-        /**
-         *
-         */
-        pipeline.push(createPreferCurlyTransform());
-     //  pipeline.push(createEncloseBracesTransform(["month"]));
-        pipeline.push(createRemoveSpecifiedFieldsTransform(["abstract"]))
+    /**
+     * Remove duplicate fields.
+     */
+    pipeline.push(createRemoveDuplicateFieldsTransform());
+    /**
+     * Remove empty fields.
+     */
+    pipeline.push(createRemoveEmptyFieldsTransform());
+    /**
+     *
+     */
+    pipeline.push(createPreferCurlyTransform());
+ //  pipeline.push(createEncloseBracesTransform(["month"]));
+    pipeline.push(createRemoveSpecifiedFieldsTransform(["abstract"]))
 
-        pipeline.push(createGenerateKeysTransform("[auth:required:lower][year:required][veryshorttitle:lower][duplicateNumber]"))
+    pipeline.push(createGenerateKeysTransform("[auth:required:lower][year:required][veryshorttitle:lower][duplicateNumber]"))
 
-        pipeline.push(createDropAllCapsTransform());
-    }
-	if (options.dropAllCaps) {
-		pipeline.push(createDropAllCapsTransform());
-	}
-	if (options.encodeUrls) {
-		pipeline.push(createEncodeUrlsTransform());
-	}
-	if (options.escape) {
-		pipeline.push(createEscapeCharactersTransform());
-	}
-	pipeline.push(createFormatPageRangeTransform());
-	if (options.generateKeys) {
-		pipeline.push(createGenerateKeysTransform(options.generateKeys));
-	}
-	if (options.maxAuthors) {
-		pipeline.push(createLimitAuthorsTransform(options.maxAuthors));
-	}
-	if (options.lowercase) {
-		pipeline.push(
-			createLowercaseEntryTypeTransform(),
-			createLowercaseFieldsTransform(),
-		);
-	}
-	if (options.merge || options.duplicates) {
-		pipeline.push(
-			createMergeEntriesTransform(options.duplicates, options.merge),
-		);
-	}
-	if (options.omit) {
-		pipeline.push(createRemoveSpecifiedFieldsTransform(options.omit));
-	}
-	if (options.enclosingBraces) {
-		pipeline.push(createEncloseBracesTransform(options.enclosingBraces));
-	}
-	if (options.curly) {
-		pipeline.push(createPreferCurlyTransform());
-	}
-	if (options.numeric) {
-		pipeline.push(createPreferNumericTransform());
-	}
-	if (options.removeBraces) {
-		pipeline.push(createRemoveBracesTransform(options.removeBraces));
-	}
-	if (options.stripComments) {
-		pipeline.push(createRemoveCommentsTransform());
-	}
-	if (options.removeDuplicateFields) {
-		pipeline.push(createRemoveDuplicateFieldsTransform());
-	}
-	if (options.removeEmptyFields) {
-		pipeline.push(createRemoveEmptyFieldsTransform());
-	}
-	if (options.sort) {
-		pipeline.push(createSortEntriesTransform(options.sort));
-	}
-	if (options.sortFields) {
-		pipeline.push(createSortFieldsTransform(options.sortFields));
-	}
-	if (options.stripEnclosingBraces) {
-		pipeline.push(createRemoveEnclosingBracesTransform());
-	}
+    pipeline.push(createDropAllCapsTransform());
+    pipeline.push(createBlankLinesTransform());
 	pipeline.push(createResetWhitespaceTransform(!options.tidyComments));
 	const indent = options.tab ? "\t" : " ".repeat(options.space);
 	pipeline.push(createIndentFieldsTransform(indent));
-	if (options.blankLines) {
-		pipeline.push(createBlankLinesTransform());
-	}
 	pipeline.push(createAlignValuesTransform(options.align));
 	pipeline.push(createFieldCommasTransform(options.trailingCommas ?? false));
 	pipeline.push(createWrapValuesTransform(indent, options.align, options.wrap));
