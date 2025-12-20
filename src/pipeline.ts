@@ -76,7 +76,7 @@ export function generateTransformPipeline(
      //  pipeline.push(createEncloseBracesTransform(["month"]));
         pipeline.push(createRemoveSpecifiedFieldsTransform(["abstract"]))
 
-        pipeline.push(createGenerateKeysTransform("[auth:required:lower][year:required][veryshorttitle:lower][duplicateNumber]"))
+      //  pipeline.push(createGenerateKeysTransform("[auth:required:lower][year:required][veryshorttitle:lower][duplicateNumber]"))
 
         pipeline.push(createDropAllCapsTransform());
     }

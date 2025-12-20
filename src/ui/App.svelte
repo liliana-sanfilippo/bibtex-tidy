@@ -18,6 +18,7 @@ const optionDefaults = normalizeOptions({
 	duplicates: ["key"],
 	sortFields: false,
 	removeDuplicateFields: true,
+    generateKeys: "[auth:required:lower][year:required][veryshorttitle:lower][duplicateNumber]"
 });
 
 let running = false;
