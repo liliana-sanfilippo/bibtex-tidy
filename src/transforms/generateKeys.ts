@@ -12,6 +12,7 @@ export function createGenerateKeysTransform(template: string): Transform {
 					entry.key = newKey;
 				}
 			}
+            console.log("createGenerateKeysTransform")
 			return undefined;
 		},
 	};
