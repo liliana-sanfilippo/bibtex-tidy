@@ -4328,18 +4328,19 @@ __name(removeUnsafeEntryKeyChars, "removeUnsafeEntryKeyChars");
 
 // src/transforms/generateKeys.ts
 function createGenerateKeysTransform(template) {
+  console.log("createGenerateKeysTransform");
   return {
     name: "generate-keys",
     apply: /* @__PURE__ */ __name((astProxy) => {
       const newKeys = generateKeys(astProxy.entries(), astProxy, template);
       console.log("Entries: " + astProxy.entries().length);
+      console.log("newKeys: " + newKeys.size);
       for (const entry of astProxy.entries()) {
         const newKey = newKeys.get(entry);
         if (newKey) {
           entry.key = newKey;
         }
       }
-      console.log("createGenerateKeysTransform");
       return void 0;
     }, "apply")
   };
@@ -4665,6 +4666,7 @@ __name(createRemoveDuplicateFieldsTransform, "createRemoveDuplicateFieldsTransfo
 
 // src/transforms/removeEmptyFields.ts
 function createRemoveEmptyFieldsTransform() {
+  console.log("createRemoveEmptyFieldsTransform");
   return {
     name: "remove-empty-fields",
     apply: /* @__PURE__ */ __name((ast) => {
@@ -4979,9 +4981,7 @@ function generateTransformPipeline(options) {
     pipeline.push(createRemoveCommentsTransform());
   }
   pipeline.push(createRemoveDuplicateFieldsTransform());
-  if (options.removeEmptyFields) {
-    pipeline.push(createRemoveEmptyFieldsTransform());
-  }
+  pipeline.push(createRemoveEmptyFieldsTransform());
   if (options.sort) {
     pipeline.push(createSortEntriesTransform(options.sort));
   }
