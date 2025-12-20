@@ -463,7 +463,7 @@ export const optionDefinitions: OptionDefinition[] = [
 			true: DEFAULT_KEY_TEMPLATE,
 			false: undefined,
 		},
-		defaultValue: undefined,
+		defaultValue: true,
 	},
 	{
 		key: "maxAuthors",

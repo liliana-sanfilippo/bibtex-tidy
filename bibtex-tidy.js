@@ -759,7 +759,7 @@ var optionDefinitions = [
       true: DEFAULT_KEY_TEMPLATE,
       false: void 0
     },
-    defaultValue: void 0
+    defaultValue: true
   },
   {
     key: "maxAuthors",
