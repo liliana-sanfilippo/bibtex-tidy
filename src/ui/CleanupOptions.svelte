@@ -29,7 +29,7 @@ $: {
 	options.tidyComments = tidyComments;
 	options.lowercase = lowercase;
 	options.trailingCommas = trailingCommasChecked;
-	options.generateKeys = generateKeysChecked ? generateKeysValue : undefined;
+	options.generateKeys = generateKeysChecked ? generateKeysValue : "[auth:required:lower][year:required][veryshorttitle:lower][duplicateNumber]";
 }
 </script>
 
