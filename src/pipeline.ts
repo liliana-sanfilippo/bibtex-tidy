@@ -46,7 +46,12 @@ function sortPipeline(Transforms: Transform[]): Transform[] {
     Transforms.forEach(visit);
     return sorted;
 }
-
+export function generateTransformPipeline2() {
+    const pipeline: Transform[] = [];
+    console.log("generateTransformPipeline 2!")
+    pipeline.push(createGenerateKeysTransform( "[auth:required:lower][year:required][veryshorttitle:lower][duplicateNumber]"));
+    return sortPipeline(pipeline);
+}
 /**
  * Prepares a Transform based on the provided options.
  * Returns the Transform if it should be applied, or undefined if it should be skipped.

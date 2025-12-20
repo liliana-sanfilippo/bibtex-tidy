@@ -4333,7 +4333,10 @@ function createGenerateKeysTransform(template) {
     name: "generate-keys",
     apply: /* @__PURE__ */ __name((astProxy) => {
       const newKeys = generateKeys(astProxy.entries(), astProxy, template);
+      console.log("Entries: ");
+      console.log(astProxy.entries());
       console.log("Entries: " + astProxy.entries().length);
+      console.log("newKeys: " + newKeys.size);
       console.log("newKeys: " + newKeys.size);
       for (const entry of astProxy.entries()) {
         const newKey = newKeys.get(entry);
@@ -4942,6 +4945,13 @@ function sortPipeline(Transforms) {
   return sorted;
 }
 __name(sortPipeline, "sortPipeline");
+function generateTransformPipeline2() {
+  const pipeline = [];
+  console.log("generateTransformPipeline 2!");
+  pipeline.push(createGenerateKeysTransform("[auth:required:lower][year:required][veryshorttitle:lower][duplicateNumber]"));
+  return sortPipeline(pipeline);
+}
+__name(generateTransformPipeline2, "generateTransformPipeline2");
 function generateTransformPipeline(options) {
   const pipeline = [];
   console.log("generateTransformPipeline");
@@ -5012,6 +5022,7 @@ function tidy(input, options_ = {}) {
   const ast = parseBibTeX(inputFixed);
   const cache = new ASTProxy(ast);
   const pipeline = generateTransformPipeline(options);
+  const secPipeline = generateTransformPipeline2();
   const warnings = cache.entries().filter((entry) => !entry.key).map((entry) => ({
     code: "MISSING_KEY",
     message: `${entry.parent.command} entry does not have a citation key.`
@@ -5020,6 +5031,16 @@ function tidy(input, options_ = {}) {
     console.log(logAST(ast));
   }
   for (const transform of pipeline) {
+    const result = transform.apply(cache);
+    if (verbose) {
+      console.log(`
+
+## Applying transform: ${transform.name}`);
+      console.log(logAST(ast));
+    }
+    if (result) warnings.push(...result);
+  }
+  for (const transform of secPipeline) {
     const result = transform.apply(cache);
     if (verbose) {
       console.log(`
