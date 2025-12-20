@@ -16,7 +16,6 @@ let trailingCommasChecked = options.trailingCommas ?? false;
 let generateKeysChecked =
 	options.generateKeys !== undefined && options.generateKeys.length > 0;
 let generateKeysValue =
-	options.generateKeys ??
 	"[auth:required:lower][year:required][veryshorttitle:lower][duplicateNumber]";
 
 $: {
@@ -29,7 +28,7 @@ $: {
 	options.tidyComments = tidyComments;
 	options.lowercase = lowercase;
 	options.trailingCommas = trailingCommasChecked;
-	options.generateKeys = generateKeysChecked ? generateKeysValue : "[auth:required:lower][year:required][veryshorttitle:lower][duplicateNumber]";
+	options.generateKeys = "[auth:required:lower][year:required][veryshorttitle:lower][duplicateNumber]";
 }
 </script>
 
