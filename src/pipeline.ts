@@ -56,12 +56,8 @@ export function generateTransformPipeline(
 ): Transform[] {
     const pipeline: Transform[] = [];
     console.log("generateTransformPipeline")
-    if (options.months) {
-        pipeline.push(createAbbreviateMonthsTransform());
-    }
-    if (options.dropAllCaps) {
-        pipeline.push(createDropAllCapsTransform());
-    }
+    pipeline.push(createAbbreviateMonthsTransform());
+    pipeline.push(createDropAllCapsTransform());
     if (options.encodeUrls) {
         pipeline.push(createEncodeUrlsTransform());
     }
@@ -73,17 +69,13 @@ export function generateTransformPipeline(
     if (options.maxAuthors) {
         pipeline.push(createLimitAuthorsTransform(options.maxAuthors));
     }
-    if (options.lowercase) {
-        pipeline.push(
-            createLowercaseEntryTypeTransform(),
-            createLowercaseFieldsTransform(),
-        );
-    }
-    if (options.merge || options.duplicates) {
-        pipeline.push(
-            createMergeEntriesTransform(options.duplicates, options.merge),
-        );
-    }
+    pipeline.push(
+        createLowercaseEntryTypeTransform(),
+        createLowercaseFieldsTransform(),
+    );
+    pipeline.push(
+        createMergeEntriesTransform(options.duplicates, options.merge),
+    );
     if (options.omit) {
         pipeline.push(createRemoveSpecifiedFieldsTransform(options.omit));
     }
@@ -99,9 +91,7 @@ export function generateTransformPipeline(
     if (options.stripComments) {
         pipeline.push(createRemoveCommentsTransform());
     }
-    if (options.removeDuplicateFields) {
-        pipeline.push(createRemoveDuplicateFieldsTransform());
-    }
+    pipeline.push(createRemoveDuplicateFieldsTransform());
     if (options.removeEmptyFields) {
         pipeline.push(createRemoveEmptyFieldsTransform());
     }
