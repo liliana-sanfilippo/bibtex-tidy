@@ -69,9 +69,7 @@ export function generateTransformPipeline(
 		pipeline.push(createEscapeCharactersTransform());
 	}
 	pipeline.push(createFormatPageRangeTransform());
-	if (options.generateKeys) {
-		pipeline.push(createGenerateKeysTransform(options.generateKeys));
-	}
+    pipeline.push(createGenerateKeysTransform("[auth:required:lower][year:required][veryshorttitle:lower][duplicateNumber]"));
 	if (options.maxAuthors) {
 		pipeline.push(createLimitAuthorsTransform(options.maxAuthors));
 	}
