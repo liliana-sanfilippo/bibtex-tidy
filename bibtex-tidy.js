@@ -4974,6 +4974,7 @@ function generateTransformPipeline(options) {
     pipeline.push(createRemoveEmptyFieldsTransform());
     pipeline.push(createPreferCurlyTransform());
     pipeline.push(createRemoveSpecifiedFieldsTransform(["abstract"]));
+    pipeline.push(createGenerateKeysTransform("[auth:required:lower][year:required][veryshorttitle:lower][duplicateNumber]"));
     pipeline.push(createDropAllCapsTransform());
   }
   if (options.dropAllCaps) {
