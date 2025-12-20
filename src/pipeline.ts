@@ -94,9 +94,6 @@ export function generateTransformPipeline(
 	if (options.curly) {
 		pipeline.push(createPreferCurlyTransform());
 	}
-	if (options.numeric) {
-		pipeline.push(createPreferNumericTransform());
-	}
 	if (options.removeBraces) {
 		pipeline.push(createRemoveBracesTransform(options.removeBraces));
 	}
