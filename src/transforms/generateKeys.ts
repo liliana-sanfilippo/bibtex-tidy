@@ -8,6 +8,7 @@ export function createGenerateKeysTransform(template: string): Transform {
 		apply: (astProxy) => {
 			const newKeys = generateKeys(astProxy.entries(), astProxy, template);
             console.log("Entries: " + astProxy.entries().length)
+            console.log("newKeys: " + newKeys.size);
 			for (const entry of astProxy.entries()) {
 				const newKey = newKeys.get(entry);
 				if (newKey) {
