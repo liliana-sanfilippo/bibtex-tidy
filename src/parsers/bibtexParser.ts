@@ -314,7 +314,7 @@ export function parseBibTeX(input: string): RootNode {
 					}
 				} else if (char === ",") {
 					node = new FieldNode(node);
-				}  else if (
+				} else if (
 					(node.wrapType === "{" && char === "}") ||
 					(node.wrapType === "(" && char === ")")
 				) {
@@ -501,5 +501,3 @@ export class BibTeXSyntaxError extends Error {
 		this.hint = hint;
 	}
 }
-
-

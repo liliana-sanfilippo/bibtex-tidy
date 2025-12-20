@@ -13,12 +13,11 @@ const optionDefaults = normalizeOptions({
 	tab: true,
 	align: 13,
 	curly: true,
-	numeric: false,
+	numeric: true,
 	escape: false,
 	duplicates: ["key"],
-	sortFields: false,
-	removeDuplicateFields: true,
-    generateKeys: true
+	sortFields: true,
+	removeDuplicateFields: false,
 });
 
 let running = false;

@@ -19,7 +19,7 @@ export type OptionDefinition = {
 };
 
 const DEFAULT_MERGE_CHECK: string[] = ["doi", "citation", "abstract"];
-export const DEFAULT_ALIGN = 0;
+export const DEFAULT_ALIGN = 14;
 export const DEFAULT_SPACE = 2;
 export const DEFAULT_WRAP = 80;
 export const DEFAULT_FIELD_SORT = [
@@ -89,7 +89,7 @@ export const optionDefinitions: OptionDefinition[] = [
 			"Overwrite the original input files with the tidied result. This is enabled by default but will be disabled by default in v2. For v1, use --no-modify to output to stdout instead of overwriting the input files.",
 		],
 		type: "boolean",
-		defaultValue: false, // TODO: In v2, switch this to false
+		defaultValue: true, // TODO: In v2, switch this to false
 	},
 	{
 		key: "omit",
@@ -112,16 +112,6 @@ export const optionDefinitions: OptionDefinition[] = [
 		type: "string[]",
 		defaultValue: [],
 	},
-    {
-        key: "wikiConfig",
-        cli: { "--wikiConfig": true, "--no-wikiConfig": false },
-        toCLI: (val) => (val ? "--curly" : undefined),
-        title: "wikiConfig",
-        description: [
-         'wikiConfig'  ],
-        type: "boolean",
-        defaultValue: true,
-    },
 	{
 		key: "curly",
 		cli: { "--curly": true, "--no-curly": false },
@@ -131,7 +121,7 @@ export const optionDefinitions: OptionDefinition[] = [
 			'Enclose all property values in braces. Quoted values will be converted to braces. For example, "Journal of Tea" will become {Journal of Tea}.',
 		],
 		type: "boolean",
-		defaultValue: true,
+		defaultValue: false,
 	},
 	{
 		key: "numeric",
@@ -153,7 +143,7 @@ export const optionDefinitions: OptionDefinition[] = [
 			"Convert all months to three letter abbreviations (jan, feb, etc).",
 		],
 		type: "boolean",
-		defaultValue: true,
+		defaultValue: false,
 	},
 	{
 		key: "space",
@@ -327,7 +317,7 @@ export const optionDefinitions: OptionDefinition[] = [
 			"Where an entire value is enclosed in double braces, remove the extra braces. For example, {{Journal of Tea}} will become {Journal of Tea}.",
 		],
 		type: "boolean",
-		defaultValue: true,
+		defaultValue: false,
 	},
 	{
 		key: "dropAllCaps",
@@ -338,7 +328,7 @@ export const optionDefinitions: OptionDefinition[] = [
 			"Where values are all caps, make them title case. For example, {JOURNAL OF TEA} will become {Journal of Tea}. Roman numerals will be left unchanged.",
 		],
 		type: "boolean",
-		defaultValue: true,
+		defaultValue: false,
 	},
 	{
 		key: "escape",
@@ -349,7 +339,7 @@ export const optionDefinitions: OptionDefinition[] = [
 			"Escape special characters, such as umlaut. This ensures correct typesetting with latex. Enabled by default.",
 		],
 		type: "boolean",
-		defaultValue: false,
+		defaultValue: true,
 	},
 	{
 		key: "sortFields",
@@ -389,7 +379,7 @@ export const optionDefinitions: OptionDefinition[] = [
 		title: "Remove comments",
 		description: ["Remove all comments from the bibtex source."],
 		type: "boolean",
-		defaultValue: true,
+		defaultValue: false,
 	},
 	{
 		key: "trailingCommas",
@@ -418,7 +408,7 @@ export const optionDefinitions: OptionDefinition[] = [
 		title: "Tidy comments",
 		description: ["Remove whitespace surrounding comments."],
 		type: "boolean",
-		defaultValue: false,
+		defaultValue: true,
 	},
 	{
 		key: "removeEmptyFields",
@@ -427,7 +417,7 @@ export const optionDefinitions: OptionDefinition[] = [
 		title: "Remove empty fields",
 		description: ["Remove any fields that have empty values."],
 		type: "boolean",
-		defaultValue: true,
+		defaultValue: false,
 	},
 	{
 		key: "removeDuplicateFields",
@@ -463,7 +453,7 @@ export const optionDefinitions: OptionDefinition[] = [
 			true: DEFAULT_KEY_TEMPLATE,
 			false: undefined,
 		},
-		defaultValue: true,
+		defaultValue: undefined,
 	},
 	{
 		key: "maxAuthors",
@@ -563,7 +553,7 @@ export const optionDefinitions: OptionDefinition[] = [
 			"Make a backup <filename>.original. Enabled by default (unless --modify is explicitly provided or outputting to a different file/stdio). Deprecated but provided for backward compatibility.",
 		],
 		type: "boolean",
-		defaultValue: false,
+		defaultValue: true,
 		deprecated: true,
 	},
 ];
