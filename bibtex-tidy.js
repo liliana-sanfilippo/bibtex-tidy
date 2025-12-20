@@ -430,7 +430,7 @@ var optionDefinitions = [
       "Convert all months to three letter abbreviations (jan, feb, etc)."
     ],
     type: "boolean",
-    defaultValue: false
+    defaultValue: true
   },
   {
     key: "space",
@@ -591,7 +591,7 @@ var optionDefinitions = [
       "Where an entire value is enclosed in double braces, remove the extra braces. For example, {{Journal of Tea}} will become {Journal of Tea}."
     ],
     type: "boolean",
-    defaultValue: false
+    defaultValue: true
   },
   {
     key: "dropAllCaps",
@@ -602,7 +602,7 @@ var optionDefinitions = [
       "Where values are all caps, make them title case. For example, {JOURNAL OF TEA} will become {Journal of Tea}. Roman numerals will be left unchanged."
     ],
     type: "boolean",
-    defaultValue: false
+    defaultValue: true
   },
   {
     key: "escape",
@@ -653,7 +653,7 @@ var optionDefinitions = [
     title: "Remove comments",
     description: ["Remove all comments from the bibtex source."],
     type: "boolean",
-    defaultValue: false
+    defaultValue: true
   },
   {
     key: "trailingCommas",
@@ -691,7 +691,7 @@ var optionDefinitions = [
     title: "Remove empty fields",
     description: ["Remove any fields that have empty values."],
     type: "boolean",
-    defaultValue: false
+    defaultValue: true
   },
   {
     key: "removeDuplicateFields",
@@ -705,7 +705,7 @@ var optionDefinitions = [
       "Only allow one of each field in each entry. Enabled by default."
     ],
     type: "boolean",
-    defaultValue: false
+    defaultValue: true
   },
   {
     key: "generateKeys",
@@ -745,7 +745,7 @@ var optionDefinitions = [
     title: "Lowercase fields",
     description: ["Lowercase field names and entry type. Enabled by default."],
     type: "boolean",
-    defaultValue: false
+    defaultValue: true
   },
   {
     key: "enclosingBraces",
@@ -1895,30 +1895,6 @@ ${indent}`;
 }
 __name(createIndentFieldsTransform, "createIndentFieldsTransform");
 
-// src/utils.ts
-function convertCRLF(str) {
-  return str.replace(/\r\n?/g, "\n");
-}
-__name(convertCRLF, "convertCRLF");
-function wrapText(line, lineWidth) {
-  const words2 = line.split(" ");
-  const lines = [];
-  let currLine = "";
-  for (const [i, word] of words2.entries()) {
-    if (currLine.length + word.length + 1 > lineWidth && i > 0) {
-      lines.push(currLine.trim());
-      currLine = "";
-    }
-    currLine += `${word} `;
-  }
-  return [...lines, currLine.trim()];
-}
-__name(wrapText, "wrapText");
-function unwrapText(str) {
-  return str.replace(/\s*\n\s*\n\s*/g, "<<BIBTEX_TIDY_PARA>>").replace(/\s*\n\s*/g, " ").replace(/<<BIBTEX_TIDY_PARA>>/g, "\n\n");
-}
-__name(unwrapText, "unwrapText");
-
 // src/transforms/preferCurly.ts
 function createPreferCurlyTransform() {
   return {
@@ -2035,6 +2011,30 @@ function isComment2(node) {
   return node.type === "text" || node.block?.type === "comment";
 }
 __name(isComment2, "isComment");
+
+// src/utils.ts
+function convertCRLF(str) {
+  return str.replace(/\r\n?/g, "\n");
+}
+__name(convertCRLF, "convertCRLF");
+function wrapText(line, lineWidth) {
+  const words2 = line.split(" ");
+  const lines = [];
+  let currLine = "";
+  for (const [i, word] of words2.entries()) {
+    if (currLine.length + word.length + 1 > lineWidth && i > 0) {
+      lines.push(currLine.trim());
+      currLine = "";
+    }
+    currLine += `${word} `;
+  }
+  return [...lines, currLine.trim()];
+}
+__name(wrapText, "wrapText");
+function unwrapText(str) {
+  return str.replace(/\s*\n\s*\n\s*/g, "<<BIBTEX_TIDY_PARA>>").replace(/\s*\n\s*/g, " ").replace(/<<BIBTEX_TIDY_PARA>>/g, "\n\n");
+}
+__name(unwrapText, "unwrapText");
 
 // src/transforms/wrapValues.ts
 function createWrapValuesTransform(indent, align, wrap) {

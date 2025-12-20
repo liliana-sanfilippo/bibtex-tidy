@@ -153,7 +153,7 @@ export const optionDefinitions: OptionDefinition[] = [
 			"Convert all months to three letter abbreviations (jan, feb, etc).",
 		],
 		type: "boolean",
-		defaultValue: false,
+		defaultValue: true,
 	},
 	{
 		key: "space",
@@ -327,7 +327,7 @@ export const optionDefinitions: OptionDefinition[] = [
 			"Where an entire value is enclosed in double braces, remove the extra braces. For example, {{Journal of Tea}} will become {Journal of Tea}.",
 		],
 		type: "boolean",
-		defaultValue: false,
+		defaultValue: true,
 	},
 	{
 		key: "dropAllCaps",
@@ -338,7 +338,7 @@ export const optionDefinitions: OptionDefinition[] = [
 			"Where values are all caps, make them title case. For example, {JOURNAL OF TEA} will become {Journal of Tea}. Roman numerals will be left unchanged.",
 		],
 		type: "boolean",
-		defaultValue: false,
+		defaultValue: true,
 	},
 	{
 		key: "escape",
@@ -389,7 +389,7 @@ export const optionDefinitions: OptionDefinition[] = [
 		title: "Remove comments",
 		description: ["Remove all comments from the bibtex source."],
 		type: "boolean",
-		defaultValue: false,
+		defaultValue: true,
 	},
 	{
 		key: "trailingCommas",
@@ -427,7 +427,7 @@ export const optionDefinitions: OptionDefinition[] = [
 		title: "Remove empty fields",
 		description: ["Remove any fields that have empty values."],
 		type: "boolean",
-		defaultValue: false,
+		defaultValue: true,
 	},
 	{
 		key: "removeDuplicateFields",
@@ -441,7 +441,7 @@ export const optionDefinitions: OptionDefinition[] = [
 			"Only allow one of each field in each entry. Enabled by default.",
 		],
 		type: "boolean",
-		defaultValue: false,
+		defaultValue: true,
 	},
 
 	{
@@ -482,7 +482,7 @@ export const optionDefinitions: OptionDefinition[] = [
 		title: "Lowercase fields",
 		description: ["Lowercase field names and entry type. Enabled by default."],
 		type: "boolean",
-		defaultValue: false,
+		defaultValue: true,
 	},
 	{
 		key: "enclosingBraces",
