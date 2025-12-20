@@ -89,7 +89,7 @@ export function generateTransformPipeline(
         pipeline.push(createEncloseBracesTransform(options.enclosingBraces));
     }
     pipeline.push(createPreferCurlyTransform());
-    pipeline.push(createRemoveBracesTransform(options.removeBraces ?? ["title"]));
+    pipeline.push(createRemoveBracesTransform(["title", "author"]));
 
     if (options.stripComments) {
         pipeline.push(createRemoveCommentsTransform());

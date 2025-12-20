@@ -5047,7 +5047,7 @@ function generateTransformPipeline2() {
   return sortPipeline(pipeline);
 }
 function generateTransformPipeline(options) {
-  var _a, _b, _c;
+  var _a, _b;
   const pipeline = [];
   console.log("generateTransformPipeline");
   pipeline.push(createAbbreviateMonthsTransform());
@@ -5077,7 +5077,7 @@ function generateTransformPipeline(options) {
     pipeline.push(createEncloseBracesTransform(options.enclosingBraces));
   }
   pipeline.push(createPreferCurlyTransform());
-  pipeline.push(createRemoveBracesTransform((_b = options.removeBraces) != null ? _b : ["title"]));
+  pipeline.push(createRemoveBracesTransform(["title", "author"]));
   if (options.stripComments) {
     pipeline.push(createRemoveCommentsTransform());
   }
@@ -5099,7 +5099,7 @@ function generateTransformPipeline(options) {
     pipeline.push(createBlankLinesTransform());
   }
   pipeline.push(createAlignValuesTransform(options.align));
-  pipeline.push(createFieldCommasTransform((_c = options.trailingCommas) != null ? _c : false));
+  pipeline.push(createFieldCommasTransform((_b = options.trailingCommas) != null ? _b : false));
   pipeline.push(createWrapValuesTransform(indent, options.align, options.wrap));
   return sortPipeline(pipeline);
 }
