@@ -112,7 +112,7 @@ $: {
 	:global(:root) {
 		/* https://coolors.co/gradient-palette/1c222a-505f69?number=10 */
 		--dark1: #32232C;
-		--dark2: #222931ff;
+		--dark2: #32232C;
 		--dark3: #32232C;
 		--dark4: #2d363fff;
 		--dark5: #333d46ff;
@@ -130,11 +130,11 @@ $: {
 		--light5: #a79fa0ff;
 		--light6: #968c8dff;
 
-		--red: #de3040;
-		--green: #05c46b;
-		--orange: #f9b653;
-		--pink: #f36eb7;
-		--light-blue: #71cafd;
+		--red: #A0A7F3;
+		--green: #019968;
+		--orange: #F57D22;
+		--pink: #B85BD1;
+		--light-blue: #F4CC1E;
 
 		--main-bg: var(--dark1);
 		--border-color: var(--dark6);
