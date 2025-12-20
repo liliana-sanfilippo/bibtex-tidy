@@ -624,7 +624,7 @@ var optionDefinitions = [
       "Where values are all caps, make them title case. For example, {JOURNAL OF TEA} will become {Journal of Tea}. Roman numerals will be left unchanged."
     ],
     type: "boolean",
-    defaultValue: false
+    defaultValue: true
   },
   {
     key: "escape",
@@ -713,7 +713,7 @@ var optionDefinitions = [
     title: "Remove empty fields",
     description: ["Remove any fields that have empty values."],
     type: "boolean",
-    defaultValue: false
+    defaultValue: true
   },
   {
     key: "removeDuplicateFields",
@@ -1452,6 +1452,7 @@ __name(isRomanNumeral, "isRomanNumeral");
 
 // src/transforms/encodeUrls.ts
 function createEncodeUrlsTransform() {
+  console.log("createEncodeUrlsTransform");
   return {
     name: "encode-urls",
     apply: /* @__PURE__ */ __name((ast) => {
@@ -4981,12 +4982,8 @@ function generateTransformPipeline(options) {
   if (options.enclosingBraces) {
     pipeline.push(createEncloseBracesTransform(options.enclosingBraces));
   }
-  if (options.curly) {
-    pipeline.push(createPreferCurlyTransform());
-  }
-  if (options.removeBraces) {
-    pipeline.push(createRemoveBracesTransform(options.removeBraces));
-  }
+  pipeline.push(createPreferCurlyTransform());
+  pipeline.push(createRemoveBracesTransform(options.removeBraces ?? ["title"]));
   if (options.stripComments) {
     pipeline.push(createRemoveCommentsTransform());
   }

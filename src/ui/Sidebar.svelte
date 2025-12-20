@@ -19,20 +19,68 @@
         <header class="intro">
             <h1>BibTeX Tidy</h1>
             <p>
-                This tool tidies bibtex files by fixing inconsistent whitespace,
-                removing duplicates, removing unwanted fields, and sorting entries.
+                This tool tidies bibtex files for the specific use for the Bibtex Reference Generator or Manager.
             </p>
             <p>
-                <a class="btn" href="https://github.com/FlamingTempura/bibtex-tidy">
+                <a class="btn" href="https://github.com/liliana-sanfilippo/bibtex-tidy">
                     Github
                 </a>
                 <a
                         class="btn"
-                        href="https://github.com/FlamingTempura/bibtex-tidy/issues"
+                        href="https://github.com/liliana-sanfilippo/bibtex-tidy/issues"
                 >
-                    Report a bug
+                    Report a bug or request a feature
                 </a>
             </p>
+            <p>
+                <a
+                        class="btn"
+                        href="https://github.com/liliana-sanfilippo/react-bibtex-reference-generator/wiki/Manual"
+                >
+                    Go to the Bibtex Reference Generator
+                </a>
+            </p>
+            <p>
+                <a
+                        class="btn"
+                        href="https://github.com/liliana-sanfilippo/react-bibtex-reference-manager/wiki/Manual-for-iGEM-Wikis"
+                >
+                    Go to the Bibtex Reference Manager
+                </a>
+            </p>
+            <p>The following things are done:</p>
+            <ul>
+                <li>
+                    Remove any curly braces within the value, unless they are part of a command.
+                </li>
+                <li>
+                    Convert all months to three letter abbreviations (jan, feb, etc).
+                </li>
+                <li>
+                    Enclose all property values in braces. Quoted values will be converted to braces.
+                </li>
+                <li>
+                    Indent all fields.
+                </li>
+                <li>
+                    Insert whitespace between fields and values so that values are visually aligned.
+                </li>
+                <li>
+                    Where an entire value is enclosed in double braces, remove the extra braces.
+                </li>
+                <li>
+                    Where values are all caps, make them title case and lowercase field names and entry type.
+                </li>
+                <li>
+                    Remove any fields that have empty values.
+                </li>
+                <li>
+                    Generate citation keys.
+                </li>
+                <li>
+                    Remove any curly braces within the title, unless they are part of a command.
+                </li>
+            </ul>
         </header>
 
         <!--

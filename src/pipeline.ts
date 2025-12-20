@@ -88,12 +88,9 @@ export function generateTransformPipeline(
     if (options.enclosingBraces) {
         pipeline.push(createEncloseBracesTransform(options.enclosingBraces));
     }
-    if (options.curly) {
-        pipeline.push(createPreferCurlyTransform());
-    }
-    if (options.removeBraces) {
-        pipeline.push(createRemoveBracesTransform(options.removeBraces));
-    }
+    pipeline.push(createPreferCurlyTransform());
+    pipeline.push(createRemoveBracesTransform(options.removeBraces ?? ["title"]));
+
     if (options.stripComments) {
         pipeline.push(createRemoveCommentsTransform());
     }

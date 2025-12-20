@@ -805,7 +805,7 @@ var optionDefinitions = [
       "Where values are all caps, make them title case. For example, {JOURNAL OF TEA} will become {Journal of Tea}. Roman numerals will be left unchanged."
     ],
     type: "boolean",
-    defaultValue: false
+    defaultValue: true
   },
   {
     key: "escape",
@@ -894,7 +894,7 @@ var optionDefinitions = [
     title: "Remove empty fields",
     description: ["Remove any fields that have empty values."],
     type: "boolean",
-    defaultValue: false
+    defaultValue: true
   },
   {
     key: "removeDuplicateFields",
@@ -1579,6 +1579,7 @@ function isRomanNumeral(str) {
 
 // src/transforms/encodeUrls.ts
 function createEncodeUrlsTransform() {
+  console.log("createEncodeUrlsTransform");
   return {
     name: "encode-urls",
     apply: (ast) => {
@@ -5046,7 +5047,7 @@ function generateTransformPipeline2() {
   return sortPipeline(pipeline);
 }
 function generateTransformPipeline(options) {
-  var _a, _b;
+  var _a, _b, _c;
   const pipeline = [];
   console.log("generateTransformPipeline");
   pipeline.push(createAbbreviateMonthsTransform());
@@ -5075,12 +5076,8 @@ function generateTransformPipeline(options) {
   if (options.enclosingBraces) {
     pipeline.push(createEncloseBracesTransform(options.enclosingBraces));
   }
-  if (options.curly) {
-    pipeline.push(createPreferCurlyTransform());
-  }
-  if (options.removeBraces) {
-    pipeline.push(createRemoveBracesTransform(options.removeBraces));
-  }
+  pipeline.push(createPreferCurlyTransform());
+  pipeline.push(createRemoveBracesTransform((_b = options.removeBraces) != null ? _b : ["title"]));
   if (options.stripComments) {
     pipeline.push(createRemoveCommentsTransform());
   }
@@ -5102,7 +5099,7 @@ function generateTransformPipeline(options) {
     pipeline.push(createBlankLinesTransform());
   }
   pipeline.push(createAlignValuesTransform(options.align));
-  pipeline.push(createFieldCommasTransform((_b = options.trailingCommas) != null ? _b : false));
+  pipeline.push(createFieldCommasTransform((_c = options.trailingCommas) != null ? _c : false));
   pipeline.push(createWrapValuesTransform(indent, options.align, options.wrap));
   return sortPipeline(pipeline);
 }

@@ -328,7 +328,7 @@ export const optionDefinitions: OptionDefinition[] = [
 			"Where values are all caps, make them title case. For example, {JOURNAL OF TEA} will become {Journal of Tea}. Roman numerals will be left unchanged.",
 		],
 		type: "boolean",
-		defaultValue: false,
+		defaultValue: true,
 	},
 	{
 		key: "escape",
@@ -417,7 +417,7 @@ export const optionDefinitions: OptionDefinition[] = [
 		title: "Remove empty fields",
 		description: ["Remove any fields that have empty values."],
 		type: "boolean",
-		defaultValue: false,
+		defaultValue: true,
 	},
 	{
 		key: "removeDuplicateFields",

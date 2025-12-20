@@ -1,6 +1,7 @@
 import type { Transform } from "../types.ts";
 
 export function createEncodeUrlsTransform(): Transform {
+    console.log("createEncodeUrlsTransform")
 	return {
 		name: "encode-urls",
 		apply: (ast) => {
