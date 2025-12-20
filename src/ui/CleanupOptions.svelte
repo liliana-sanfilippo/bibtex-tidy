@@ -13,8 +13,7 @@ let tidyComments = options.tidyComments ?? false;
 let lowercase = options.lowercase ?? false;
 let trailingCommasChecked = options.trailingCommas ?? false;
 
-let generateKeysChecked =
-	options.generateKeys !== undefined && options.generateKeys.length > 0;
+let generateKeysChecked = true;
 let generateKeysValue =
 	"[auth:required:lower][year:required][veryshorttitle:lower][duplicateNumber]";
 
