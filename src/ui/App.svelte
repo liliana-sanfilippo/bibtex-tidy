@@ -13,11 +13,12 @@ const optionDefaults = normalizeOptions({
 	tab: true,
 	align: 13,
 	curly: true,
-	numeric: true,
+	numeric: false,
 	escape: false,
 	duplicates: ["key"],
 	sortFields: true,
 	removeDuplicateFields: false,
+    generateKeys: true
 });
 
 let running = false;
@@ -112,10 +113,10 @@ $: {
 		/* https://coolors.co/gradient-palette/1c222a-505f69?number=10 */
 		--dark1: #32232C;
 		--dark2: #222931ff;
-		--dark3: #850F78;
+		--dark3: #32232C;
 		--dark4: #2d363fff;
 		--dark5: #333d46ff;
-		--dark6: #39444dff;
+		--dark6: #850F78;
 		--dark7: #3f4b54ff;
 		--dark8: #44515bff;
 		--dark9: #4a5862ff;
