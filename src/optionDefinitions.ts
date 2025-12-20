@@ -131,7 +131,7 @@ export const optionDefinitions: OptionDefinition[] = [
 			'Enclose all property values in braces. Quoted values will be converted to braces. For example, "Journal of Tea" will become {Journal of Tea}.',
 		],
 		type: "boolean",
-		defaultValue: false,
+		defaultValue: true,
 	},
 	{
 		key: "numeric",
