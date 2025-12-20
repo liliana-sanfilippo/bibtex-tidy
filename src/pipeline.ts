@@ -66,6 +66,8 @@ export function generateTransformPipeline(
     }
     pipeline.push(createFormatPageRangeTransform());
     pipeline.push(createGenerateKeysTransform(options.generateKeys ?? "[auth:required:lower][year:required][veryshorttitle:lower][duplicateNumber]"));
+    pipeline.push(createGenerateKeysTransform(options.generateKeys ?? "[auth:required:lower][year:required][veryshorttitle:lower][duplicateNumber]"));
+
     if (options.maxAuthors) {
         pipeline.push(createLimitAuthorsTransform(options.maxAuthors));
     }
@@ -92,9 +94,8 @@ export function generateTransformPipeline(
         pipeline.push(createRemoveCommentsTransform());
     }
     pipeline.push(createRemoveDuplicateFieldsTransform());
-    if (options.removeEmptyFields) {
-        pipeline.push(createRemoveEmptyFieldsTransform());
-    }
+    pipeline.push(createRemoveEmptyFieldsTransform());
+
     if (options.sort) {
         pipeline.push(createSortEntriesTransform(options.sort));
     }

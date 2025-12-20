@@ -2,7 +2,8 @@ import { generateKeys } from "../generateKeys.ts";
 import type { Transform } from "../types.ts";
 
 export function createGenerateKeysTransform(template: string): Transform {
-	return {
+    console.log("createGenerateKeysTransform")
+    return {
 		name: "generate-keys",
 		apply: (astProxy) => {
 			const newKeys = generateKeys(astProxy.entries(), astProxy, template);
@@ -13,7 +14,6 @@ export function createGenerateKeysTransform(template: string): Transform {
 					entry.key = newKey;
 				}
 			}
-            console.log("createGenerateKeysTransform")
 			return undefined;
 		},
 	};

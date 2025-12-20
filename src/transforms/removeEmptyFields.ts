@@ -1,6 +1,7 @@
 import type { Transform } from "../types.ts";
 
 export function createRemoveEmptyFieldsTransform(): Transform {
+    console.log("createRemoveEmptyFieldsTransform")
 	return {
 		name: "remove-empty-fields",
 		apply: (ast) => {
