@@ -3,8 +3,9 @@ export const DEFAULT_BIBTEX = `Click Tidy to clean up the entries below
   Author =	 { Stefa{n} Sweig },
   title =	 { The impossible book },
   publisher =	 { Dead Poet Society},
+  publisher =	 { Dead Poet Society},
   year =	 1942,
-  month =        mar
+  month =        march
 }
 @article{steward03,
   author =	 {Martha Steward},

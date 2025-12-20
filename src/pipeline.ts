@@ -56,6 +56,7 @@ export function generateTransformPipeline(
 	options: OptionsNormalized,
 ): Transform[] {
 	const pipeline: Transform[] = [];
+    console.log("generateTransformPipeline")
 	if (options.months) {
 		pipeline.push(createAbbreviateMonthsTransform());
 	}
