@@ -64,12 +64,6 @@ const CLI_BIN = env.BIBTEX_TIDY_BIN ?? join("bin", "bibtex-tidy");
  */
 // TODO: test on browserstack
 
-const BROWSER_TARGETS: string[] = [
-	"chrome55",
-	"edge79",
-	"safari11",
-	"firefox52",
-];
 
 const NODE_TARGET = "node12";
 
@@ -106,7 +100,7 @@ const webBuildOptions: BuildOptions = {
 		"const-and-let": true,
 		"default-argument": true,
 	},
-	target: BROWSER_TARGETS,
+    target: 'es2020'
 };
 
 const jsLibBuildOptions: BuildOptions = {

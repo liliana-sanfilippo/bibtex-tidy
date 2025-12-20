@@ -110,9 +110,9 @@ $: {
 
 	:global(:root) {
 		/* https://coolors.co/gradient-palette/1c222a-505f69?number=10 */
-		--dark1: #1c222aff;
+		--dark1: #32232C;
 		--dark2: #222931ff;
-		--dark3: #283038ff;
+		--dark3: #850F78;
 		--dark4: #2d363fff;
 		--dark5: #333d46ff;
 		--dark6: #39444dff;
