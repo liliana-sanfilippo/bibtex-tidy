@@ -1,6 +1,7 @@
 import type { Transform } from "../types.ts";
 
 export function createAlignValuesTransform(column: number): Transform {
+    console.log("createAlignValuesTransform")
 	return {
 		name: "align-values",
 		apply: (astProxy) => {

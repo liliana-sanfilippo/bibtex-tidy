@@ -2,6 +2,7 @@ import type { BlockNode, TextNode } from "../parsers/bibtexParser.ts";
 import type { Transform } from "../types.ts";
 
 export function createBlankLinesTransform(): Transform {
+    console.log("createBlankLinesTransform")
 	return {
 		name: "blank-lines",
 		apply: (astProxy) => {

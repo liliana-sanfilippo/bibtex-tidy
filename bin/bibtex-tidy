@@ -1476,6 +1476,7 @@ var monthAliases = {
   dec: ["12", "dec", "december"]
 };
 function createAbbreviateMonthsTransform() {
+  console.log("createAbbreviateMonthsTransform");
   const months = new Map(
     Object.entries(monthAliases).flatMap(
       ([abbr, aliases]) => aliases.map((alias) => [alias, abbr])
@@ -1506,6 +1507,7 @@ function abbreviateMonth(month, months) {
 
 // src/transforms/alignValues.ts
 function createAlignValuesTransform(column) {
+  console.log("createAlignValuesTransform");
   return {
     name: "align-values",
     apply: (astProxy) => {
@@ -1521,6 +1523,7 @@ function createAlignValuesTransform(column) {
 
 // src/transforms/blankLines.ts
 function createBlankLinesTransform() {
+  console.log("createBlankLinesTransform");
   return {
     name: "blank-lines",
     apply: (astProxy) => {
@@ -1543,6 +1546,7 @@ function isComment(node) {
 
 // src/transforms/dropAllCaps.ts
 function createDropAllCapsTransform() {
+  console.log("createDropAllCapsTransform");
   return {
     name: "drop-all-caps",
     apply: (astProxy) => {
@@ -4294,6 +4298,7 @@ var MissingRequiredData = class extends Error {
 };
 function generateKeys(entries, cache, entryKeyTemplate) {
   var _a;
+  console.log("generateKeys");
   let template = entryKeyTemplate;
   if (!entryKeyTemplate.includes("[duplicateLetter]") && !entryKeyTemplate.includes("[duplicateNumber]")) {
     template = `${entryKeyTemplate}[duplicateLetter]`;
@@ -4439,6 +4444,7 @@ function createGenerateKeysTransform(template) {
     name: "generate-keys",
     apply: (astProxy) => {
       const newKeys = generateKeys(astProxy.entries(), astProxy, template);
+      console.log("Entries: " + astProxy.entries().length);
       for (const entry of astProxy.entries()) {
         const newKey = newKeys.get(entry);
         if (newKey) {

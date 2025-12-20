@@ -3,6 +3,7 @@ import type { FieldNode } from "../parsers/bibtexParser.ts";
 import type { Transform } from "../types.ts";
 
 export function createDropAllCapsTransform(): Transform {
+    console.log("createDropAllCapsTransform")
 	return {
 		name: "drop-all-caps",
 		apply: (astProxy) => {

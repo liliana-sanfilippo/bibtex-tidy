@@ -133,6 +133,7 @@ export function generateKeys(
 	cache: ASTProxy,
 	entryKeyTemplate: string,
 ): Map<EntryNode, string> {
+    console.log("generateKeys")
 	let template = entryKeyTemplate;
 	if (
 		!entryKeyTemplate.includes("[duplicateLetter]") &&

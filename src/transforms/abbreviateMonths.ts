@@ -26,6 +26,7 @@ export const monthAliases: Record<string, string[]> = {
 };
 
 export function createAbbreviateMonthsTransform(): Transform {
+    console.log("createAbbreviateMonthsTransform")
 	const months = new Map<string, string>(
 		Object.entries(monthAliases).flatMap(([abbr, aliases]) =>
 			aliases.map((alias) => [alias, abbr]),
